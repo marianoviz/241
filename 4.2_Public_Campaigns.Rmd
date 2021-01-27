@@ -1,0 +1,35 @@
+---
+title: "4.2 Public Campaigns"
+author: "Larissa Neilson"
+date: "1/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+library(stringr)
+library(plotly)
+```
+
+Read in data
+
+```{r}
+data <- read.csv("congress_116_data.csv")
+metadata <- read.csv("Combined_Metadata.csv")
+
+order <- match(names(data),metadata$variable)
+metadata <- metadata[order,]
+```
+
+Find the congressperson
+
+```{r}
+congress <- data %>% 
+  select(state, district_id, candidate_name, fundrenewables, primary_percent, general_percent) %>% 
+  filter(primary_percent < 0.6, general_percent < 0.6, fundrenewables > 85, state %in% c("Florida", "Texas", "Arizona"))
+```
+
+
+
