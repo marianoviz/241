@@ -27,8 +27,8 @@ Find the congressperson
 
 ```{r}
 congress <- data %>% 
-  select(state, district_id, candidate_name, fundrenewables, primary_percent, general_percent) %>% 
-  filter(primary_percent < 0.6, general_percent < 0.6, fundrenewables > 85, state %in% c("Florida", "Texas", "Arizona"))
+  select(state, district_id, candidate_name, fundrenewables, primary_percent, general_percent, lcv_score) %>% 
+  filter(primary_percent < 0.6, general_percent < 0.6, fundrenewables > 85, state %in% c("Florida", "Texas", "Arizona"), lcv_score > 50)
 ```
 
 
